@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="800"
+    android:viewportHeight="800">
+    
+    <!-- Outer circle -->
+    <path
+        android:fillColor="#4B89DC"
+        android:pathData="M400,0C179.1,0 0,179.1 0,400s179.1,400 400,400s400,-179.1 400,-400S620.9,0 400,0zM400,750c-193.3,0 -350,-156.7 -350,-350s156.7,-350 350,-350s350,156.7 350,350S593.3,750 400,750z"/>
+    
+    <!-- Inner circle -->
+    <path
+        android:fillColor="#4B89DC"
+        android:pathData="M400,100c-165.7,0 -300,134.3 -300,300s134.3,300 300,300s300,-134.3 300,-300S565.7,100 400,100z"/>
+    
+    <!-- Text "EST." -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M350,250h100v30h-100z"/>
+    
+    <!-- Letters "DA" -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M250,350h300v100h-300z"/>
+    
+    <!-- Year "2025" -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M350,500h100v30h-100z"/>
+    
+    <!-- Small house icons -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M200,400l50,-50l50,50h-20v40h-60v-40z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M500,400l50,-50l50,50h-20v40h-60v-40z"/>
+</vector> 
