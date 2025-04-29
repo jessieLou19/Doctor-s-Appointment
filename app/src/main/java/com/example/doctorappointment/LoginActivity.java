@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.doctorappointment.database.DatabaseHelper;
+import com.example.doctorappointment.DatabaseHelper;
 import com.example.doctorappointment.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
@@ -47,8 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void validateCredentials(String email, String password) {
-        // TODO: Replace with actual database validation
-        if (email.equals("test@test.com") && password.equals("password")) {
+        if (dbHelper.validateUser(email, password)) {
             loginSuccess();
         } else {
             loginFailed();

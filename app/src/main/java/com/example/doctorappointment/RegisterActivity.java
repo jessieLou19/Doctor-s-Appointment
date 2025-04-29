@@ -33,9 +33,9 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(v -> registerUser());
         btnLogin.setOnClickListener(v -> {
             // Navigate to login activity
-            // Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-            // startActivity(intent);
-            // finish();
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 
@@ -77,9 +77,9 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show();
                 clearInputs();
                 // Navigate to login screen
-                // Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                // startActivity(intent);
-                // finish();
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             } else {
                 Toast.makeText(this, "Registration failed!", Toast.LENGTH_SHORT).show();
             }
