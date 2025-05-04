@@ -6,32 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import com.example.doctorappointment.databinding.FragmentHomeBinding;
+import com.example.doctorappointment.R;
 
 public class HomeFragment extends Fragment {
-    private FragmentHomeBinding binding;
 
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                            Bundle savedInstanceState) {
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        setupUI();
-    }
-
-    private void setupUI() {
-        // Setup UI components
-        // Will be implemented with upcoming features
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        // Simple implementation to avoid crashes
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 } 

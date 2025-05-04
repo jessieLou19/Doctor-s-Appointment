@@ -3,11 +3,16 @@ package com.example.doctorappointment.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.doctorappointment.R;
 import com.example.doctorappointment.models.Appointment;
+import com.google.android.material.button.MaterialButton;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +33,11 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         this.listener = listener;
     }
 
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public AppointmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,8 +48,9 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull AppointmentViewHolder holder, int position) {
-        Appointment appointment = appointments.get(position);
-        holder.bind(appointment);
+        if (position < appointments.size()) {
+            holder.bind(appointments.get(position));
+        }
     }
 
     @Override
@@ -47,33 +58,30 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         return appointments.size();
     }
 
-    public void setAppointments(List<Appointment> appointments) {
-        this.appointments = appointments;
-        notifyDataSetChanged();
-    }
-
     class AppointmentViewHolder extends RecyclerView.ViewHolder {
-        private final TextView dateTimeText;
-        private final TextView doctorNameText;
-        private final TextView statusText;
-        private final View rescheduleButton;
-        private final View cancelButton;
+        private final TextView appointmentDateTime;
+        private final TextView doctorName;
+        private final TextView appointmentStatus;
+        private final MaterialButton rescheduleButton;
+        private final MaterialButton cancelButton;
 
-        AppointmentViewHolder(@NonNull View itemView) {
+        public AppointmentViewHolder(@NonNull View itemView) {
             super(itemView);
-            dateTimeText = itemView.findViewById(R.id.appointmentDateTime);
-            doctorNameText = itemView.findViewById(R.id.doctorName);
-            statusText = itemView.findViewById(R.id.appointmentStatus);
+            appointmentDateTime = itemView.findViewById(R.id.appointmentDateTime);
+            doctorName = itemView.findViewById(R.id.doctorName);
+            appointmentStatus = itemView.findViewById(R.id.appointmentStatus);
             rescheduleButton = itemView.findViewById(R.id.rescheduleButton);
             cancelButton = itemView.findViewById(R.id.cancelButton);
         }
 
         void bind(final Appointment appointment) {
+            // Format the date and time
             String dateTimeString = dateFormat.format(appointment.getDate()) + " " + appointment.getTime();
-            dateTimeText.setText(dateTimeString);
+            appointmentDateTime.setText(dateTimeString);
+            
             // TODO: Get doctor name from database using appointment.getDoctorId()
-            doctorNameText.setText("Dr. Smith"); // Placeholder
-            statusText.setText(appointment.getStatus());
+            doctorName.setText("Dr. Smith"); // Placeholder
+            appointmentStatus.setText(appointment.getStatus());
 
             itemView.setOnClickListener(v -> {
                 if (listener != null) listener.onAppointmentClick(appointment);
@@ -86,11 +94,6 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             cancelButton.setOnClickListener(v -> {
                 if (listener != null) listener.onCancelClick(appointment);
             });
-
-            // Show/hide action buttons based on appointment status
-            boolean isUpcoming = "SCHEDULED".equals(appointment.getStatus());
-            rescheduleButton.setVisibility(isUpcoming ? View.VISIBLE : View.GONE);
-            cancelButton.setVisibility(isUpcoming ? View.VISIBLE : View.GONE);
         }
     }
 } 

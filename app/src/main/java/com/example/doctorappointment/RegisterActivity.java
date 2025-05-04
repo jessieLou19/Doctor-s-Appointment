@@ -60,6 +60,9 @@ public class RegisterActivity extends AppCompatActivity {
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
         String confirmPassword = etConfirmPassword.getText().toString().trim();
+        // Since we don't have a phone field in the registration form yet,
+        // we'll pass an empty string for now
+        String phone = "";
 
         if (validateInputs(name, email, password, confirmPassword)) {
             progressBar.setVisibility(View.VISIBLE);
@@ -70,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-            long result = databaseHelper.registerUser(name, email, password);
+            long result = databaseHelper.registerUser(name, email, password, phone);
             progressBar.setVisibility(View.GONE);
 
             if (result != -1) {
